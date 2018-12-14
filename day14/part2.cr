@@ -1,6 +1,6 @@
 recipes = "824501"
 
-recipes_nums = recipes.chars.map(&.to_i)
+recipes_nums = recipes.chars.map { |i| i.to_i}
 
 scoreboard = [3, 7]
 
@@ -14,7 +14,7 @@ new_recipe2 = sum % 10
 scoreboard << new_recipe1 if new_recipe1 != 0
 scoreboard << new_recipe2
 
-loop do
+while true
   elf1_pos = (scoreboard[elf1_pos] + elf1_pos + 1) % scoreboard.size
   elf2_pos = (scoreboard[elf2_pos] + elf2_pos + 1) % scoreboard.size
 
