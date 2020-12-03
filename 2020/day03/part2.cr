@@ -24,12 +24,18 @@ cols = grid[0].size
 trees_array = [] of Int64
 
 slopes.each do |slope|
-  trees = 0
-  col = 0
   right, down = slope
-  grid.each.step(down).each_with_index do |_row, i|
-    trees += 1 if grid[i * down][col % cols] == TREE
+
+  trees = 0
+
+  row = col = 0
+
+  while row < rows
+    trees += 1 if grid[row][col] == TREE
+
+    row += down
     col += right
+    col %= cols
   end
 
   trees_array << trees.to_i64
