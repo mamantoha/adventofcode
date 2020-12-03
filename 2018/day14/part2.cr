@@ -1,6 +1,6 @@
 recipes = "824501"
 
-recipes_nums = recipes.chars.map { |i| i.to_i}
+recipes_nums = recipes.chars.map { |i| i.to_i }
 
 scoreboard = [3, 7]
 

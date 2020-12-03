@@ -9,7 +9,7 @@ class Point
   end
 
   def distance(point : Point)
-    (@x - point.x).abs +  (@y - point.y).abs
+    (@x - point.x).abs + (@y - point.y).abs
   end
 
   def area_size
@@ -21,8 +21,8 @@ class Point
   end
 end
 
-coordinates = lines.map { |line| line.split(", ").map(&.to_i)}
-points = coordinates.map { |coord| Point.new(coord[0], coord[1])}
+coordinates = lines.map { |line| line.split(", ").map(&.to_i) }
+points = coordinates.map { |coord| Point.new(coord[0], coord[1]) }
 
 min_x, max_x = points.map(&.x).minmax
 min_y, max_y = points.map(&.y).minmax
@@ -40,7 +40,7 @@ min_x.upto(max_x) do |x|
     distances = points.map { |p| p.distance(point) }.sort
     next if distances[0] == distances[1]
 
-    closest_point = points.min_by { |p| p.distance(point)}
+    closest_point = points.min_by { |p| p.distance(point) }
     closest_point.closest << point
   end
 end

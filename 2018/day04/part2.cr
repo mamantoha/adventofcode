@@ -8,7 +8,7 @@ def parse_line(line : String)
 
   if m = line.match(regex)
     time = Time.parse_utc(m["time"], "%Y-%m-%d %H:%M")
-    return {time: time, string: m["string"] }
+    return {time: time, string: m["string"]}
   end
 end
 
@@ -19,7 +19,7 @@ lines.each do |line|
   end
 end
 
-ordered_records = records.sort_by { |rec| rec[:time]}
+ordered_records = records.sort_by { |rec| rec[:time] }
 
 guards = Hash(Int32, Hash(Int32, Int32)).new
 
@@ -47,6 +47,6 @@ ordered_records.each do |record|
 end
 
 winner = guards.max_by { |guard, times| times.max_by { |min, count| count }[1] }
-most_times = winner[1].max_by { |min, count| count}
+most_times = winner[1].max_by { |min, count| count }
 
 puts winner[0] * most_times[0]

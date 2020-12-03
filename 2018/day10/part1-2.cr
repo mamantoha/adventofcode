@@ -41,7 +41,7 @@ end
 puts "Part 1:"
 (y_min..y_max).each do |y|
   (x_min..x_max).each do |x|
-    point = points.find { |point| point.match?(x, y)}
+    point = points.find { |point| point.match?(x, y) }
     print point ? "#" : "."
   end
   puts

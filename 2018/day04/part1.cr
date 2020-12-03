@@ -8,7 +8,7 @@ def parse_line(line : String)
 
   if m = line.match(regex)
     time = Time.parse_utc(m["time"], "%Y-%m-%d %H:%M")
-    return {time: time, string: m["string"] }
+    return {time: time, string: m["string"]}
   end
 end
 
@@ -19,7 +19,7 @@ lines.each do |line|
   end
 end
 
-ordered_records = records.sort_by { |rec| rec[:time]}
+ordered_records = records.sort_by { |rec| rec[:time] }
 
 alias Minute = Int32
 guards = Hash(Int32, Array(Array(Minute))).new(Array(Array(Minute)).new)
@@ -41,7 +41,7 @@ ordered_records.each do |record|
 
     if guard && asleep
       (guards[guard] ||= [] of Array(Minute)) << [asleep, awake]
-   end
+    end
   end
 end
 

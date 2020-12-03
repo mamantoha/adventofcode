@@ -7,12 +7,12 @@ class Point
   end
 
   def distance(point : Point)
-    (@x - point.x).abs +  (@y - point.y).abs
+    (@x - point.x).abs + (@y - point.y).abs
   end
 end
 
-coordinates = lines.map { |line| line.split(", ").map(&.to_i)}
-points = coordinates.map { |coord| Point.new(coord[0], coord[1])}
+coordinates = lines.map { |line| line.split(", ").map(&.to_i) }
+points = coordinates.map { |coord| Point.new(coord[0], coord[1]) }
 
 min_x, max_x = points.map(&.x).minmax
 min_y, max_y = points.map(&.y).minmax
@@ -25,7 +25,7 @@ min_x.upto(max_x) do |x|
     point = Point.new(x, y)
 
     distances = points.map { |p| p.distance(point) }
-    size +=1 if distances.sum < max_distance
+    size += 1 if distances.sum < max_distance
   end
 end
 
