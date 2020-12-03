@@ -1,7 +1,7 @@
 lines = File.read_lines("input")
 
 SQUARE = '.'
-TREE = '#'
+TREE   = '#'
 
 grid = [] of Array(Char)
 
