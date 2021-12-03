@@ -4,7 +4,7 @@ gamma_rate = []
 epsilon_rate = []
 
 lines.reduce([]) { |acc, line| acc << line.chars.map(&:to_i) }.transpose.each do |e|
-  rates = e.group_by(&:itself).map { |k,v| [k, v.count] }.to_h.sort_by { |_, v| v }
+  rates = e.tally.sort_by { |_, v| v }
 
   gamma_rate << rates[1][0]
   epsilon_rate << rates[0][0]
