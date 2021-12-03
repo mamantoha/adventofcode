@@ -10,12 +10,12 @@ bits_size = lines.first.size
 bits_size.times do |i|
   # stop is only one number left
   if most_lines.size > 1
-    most = most_lines.transpose[i].tally.max_by{ |k, v| [v, k] }[0]
+    most = most_lines.transpose[i].tally.max_by { |k, v| [v, k] }[0]
     most_lines = most_lines.select { |line| line[i] == most }
   end
 
   if least_lines.size > 1
-    least = least_lines.transpose[i].tally.min_by{ |k, v| [v, k] }[0]
+    least = least_lines.transpose[i].tally.min_by { |k, v| [v, k] }[0]
     least_lines = least_lines.select { |line| line[i] == least }
   end
 end
