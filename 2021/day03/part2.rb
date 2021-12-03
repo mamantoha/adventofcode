@@ -9,13 +9,13 @@ bits_size = lines.first.size
 
 bits_size.times do |i|
   most = most_lines.transpose[i].tally.max_by{ |k, v| [v, k] }[0]
-  most_lines = most_lines.select { |line| line [i] == most }
+  most_lines = most_lines.select { |line| line[i] == most }
 
   least = least_lines.transpose[i].tally.min_by{ |k, v| [v, k] }[0]
-  least_lines = least_lines.select { |line| line [i] == least }
+  least_lines = least_lines.select { |line| line[i] == least }
 end
 
 most = most_lines.join.to_i(2)
-less = least_lines.join.to_i(2)
+least = least_lines.join.to_i(2)
 
-p most * less # => 3765399
+p most * least # => 3765399
