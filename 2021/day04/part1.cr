@@ -13,15 +13,15 @@ while !winner
   drawn_numbers = numbers[...i]
 
   boards.each do |board|
-    if board.any? { |row| (row & drawn_numbers).size == grid_size } ||
-       board.transpose.any? { |col| (col & drawn_numbers).size == grid_size }
-      winner = true
+    next unless board.any? { |row| (row & drawn_numbers).size == grid_size } ||
+                board.transpose.any? { |col| (col & drawn_numbers).size == grid_size }
 
-      last_number = drawn_numbers.last
-      sum_of_all_unmarked_numbers = (board.flatten - drawn_numbers).sum
+    winner = true
 
-      puts last_number * sum_of_all_unmarked_numbers
-    end
+    last_number = drawn_numbers.last
+    sum_of_all_unmarked_numbers = (board.flatten - drawn_numbers).sum
+
+    puts last_number * sum_of_all_unmarked_numbers
   end
 
   i += 1

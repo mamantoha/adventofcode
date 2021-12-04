@@ -9,19 +9,19 @@ grid_size = i = 5
 
 while boards.any?
   drawn_numbers = numbers[...i]
-  last_number = drawn_numbers.last
 
   boards.each do |board|
-    if board.any? { |row| (row & drawn_numbers).size == grid_size } ||
-       board.transpose.any? { |col| (col & drawn_numbers).size == grid_size }
-      if boards.one?
-        sum_of_all_unmarked_numbers = (board.flatten - drawn_numbers).sum
+    next unless board.any? { |row| (row & drawn_numbers).size == grid_size } ||
+                board.transpose.any? { |col| (col & drawn_numbers).size == grid_size }
 
-        puts last_number * sum_of_all_unmarked_numbers
-      end
+    if boards.one?
+      last_number = drawn_numbers.last
+      sum_of_all_unmarked_numbers = (board.flatten - drawn_numbers).sum
 
-      boards.delete(board)
+      puts last_number * sum_of_all_unmarked_numbers
     end
+
+    boards.delete(board)
   end
 
   i += 1
