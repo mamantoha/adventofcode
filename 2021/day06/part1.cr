@@ -14,7 +14,7 @@ days.times do |day|
     end
   end
 
-  new.times { array << 8}
+  new.times { array << 8 }
 end
 
 p array.size # => 393019
