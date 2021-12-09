@@ -12,9 +12,9 @@ heightmap.each_with_index do |locations, y|
     left = right = up = down = nil
 
     left = heightmap.dig(y, x - 1) if x > 0
-    right = heightmap.dig?(y, x + 1) if x < cols
-    down = heightmap.dig?(y - 1, x) if y > 0
-    up = heightmap.dig?(y + 1, x) if y < rows
+    right = heightmap.dig(y, x + 1) if x < cols - 1
+    down = heightmap.dig(y - 1, x) if y > 0
+    up = heightmap.dig(y + 1, x) if y < rows - 1
 
     adjacent_locations << left if left
     adjacent_locations << right if right
