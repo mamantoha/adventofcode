@@ -41,5 +41,5 @@ ROWS.times do |y|
   end
 end
 
-p basin_sizes.sort.last(3).reduce { |acc, i| acc * i }
+p basin_sizes.sort.last(3).product
 # => 1122700

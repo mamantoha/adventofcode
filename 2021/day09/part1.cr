@@ -25,5 +25,5 @@ heightmap.each_with_index do |locations, y|
   end
 end
 
-p low_points.map { |n| n += 1 }.sum
+p low_points.sum(&.+(1))
 # => 535
