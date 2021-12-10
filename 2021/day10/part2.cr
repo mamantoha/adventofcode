@@ -13,26 +13,26 @@ points = {
 scores = [] of Int64
 
 lines.each do |line|
-  corrupted = false
+  corrupted_line = false
 
-  memo = [] of Char
+  unclosed_chars = [] of Char
 
   line.chars.each do |char|
     if char.in?(open_chars)
-      memo.push(char)
+      unclosed_chars.push(char)
     elsif char.in?(close_chars)
-      if open_chars.index(memo.last) == close_chars.index(char)
-        memo.pop
+      if open_chars.index(unclosed_chars.last) == close_chars.index(char)
+        unclosed_chars.pop
       else
-        corrupted = true
+        corrupted_line = true
         break
       end
     end
   end
 
-  next if corrupted
+  next if corrupted_line
 
-  score = memo.reverse.reduce(0_i64) do |acc, char|
+  score = unclosed_chars.reverse.reduce(0_i64) do |acc, char|
     acc *= 5
     acc += points[char]
   end

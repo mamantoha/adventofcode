@@ -13,14 +13,14 @@ points = {
 score = 0
 
 lines.each do |line|
-  memo = [] of Char
+  unclosed_chars = [] of Char
 
   line.chars.each do |char|
     if char.in?(open_chars)
-      memo.push(char)
+      unclosed_chars.push(char)
     elsif char.in?(close_chars)
-      if open_chars.index(memo.last) == close_chars.index(char)
-        memo.pop
+      if open_chars.index(unclosed_chars.last) == close_chars.index(char)
+        unclosed_chars.pop
       else
         score += points[char]
         break
