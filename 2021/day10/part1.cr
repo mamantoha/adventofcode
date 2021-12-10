@@ -27,8 +27,6 @@ lines.each do |line|
       end
     end
   end
-
-  score
 end
 
 p score

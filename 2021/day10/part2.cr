@@ -10,27 +10,11 @@ points = {
   '<' => 4,
 }
 
-incomplete_lines = lines.dup
+scores = [] of Int64
 
 lines.each do |line|
-  memo = [] of Char
+  corrupted = false
 
-  line.chars.each_with_index do |char, i|
-    if char.in?(open_chars)
-      memo.push(char)
-    elsif char.in?(close_chars)
-      if open_chars.index(memo.last) == close_chars.index(char)
-        memo.pop
-      else
-        incomplete_lines.delete(line)
-
-        break
-      end
-    end
-  end
-end
-
-scores = incomplete_lines.map do |line|
   memo = [] of Char
 
   line.chars.each do |char|
@@ -39,16 +23,21 @@ scores = incomplete_lines.map do |line|
     elsif char.in?(close_chars)
       if open_chars.index(memo.last) == close_chars.index(char)
         memo.pop
+      else
+        corrupted = true
+        break
       end
     end
   end
 
-  memo.reverse.reduce(0_i64) do |acc, char|
+  next if corrupted
+
+  score = memo.reverse.reduce(0_i64) do |acc, char|
     acc *= 5
     acc += points[char]
-
-    acc
   end
+
+  scores << score
 end
 
 p scores.sort[scores.size // 2]
