@@ -3,4 +3,5 @@ version: 0.1.0
 
 dependencies:
   dijkstra:
-    github: geocrystal/dijkstra
+    path: ../../../crystal/geocrystal/dijkstra
+    # github: geocrystal/dijkstra

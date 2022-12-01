@@ -9,8 +9,8 @@ require "dijkstra"
 # https://shards.info/github/spider-gazelle/priority-queue/
 # https://rosettacode.org/wiki/Dijkstra's_algorithm
 
-# grid = File.read_lines("input_example").map(&.chars.map(&.to_i))
-grid = File.read_lines("input").map(&.chars.map(&.to_i))
+# grid = File.read_lines("input_example").map(&.chars.map(&.to_i)) # => 40
+grid = File.read_lines("input").map(&.chars.map(&.to_i)) # => 429
 
 rows = grid.size - 1
 cols = grid.first.size - 1
@@ -24,6 +24,8 @@ grid.each_with_index do |row, y|
   end
 end
 
-puts gr.shortest_path({0, 0}, {rows, cols})
+if (result = gr.shortest_path({0, 0}, {rows, cols}))
+  puts result.first
+end
 
 # => 429
