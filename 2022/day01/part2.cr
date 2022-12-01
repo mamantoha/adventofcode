@@ -4,7 +4,8 @@ result =
     .chomp
     .split("\n\n")
     .map(&.lines.map(&.to_i).sum)
-    .sort[-3..]
+    .sort
+    .last(3)
     .sum
 
 puts result
