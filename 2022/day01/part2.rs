@@ -11,7 +11,7 @@ fn main() {
 
     let result: u32 = v.iter().rev().take(3).sum();
 
-    println!("{:?}", result);
+    println!("{}", result);
 }
 
 // 207576
