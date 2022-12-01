@@ -1,7 +1,5 @@
 fn main() {
-    let contents = include_str!("input.txt");
-
-    let mut v: Vec<u32> = contents
+    let mut v: Vec<u32> = include_str!("input.txt")
         .trim_end()
         .split("\n\n")
         .map(|e| e.lines().map(|c| c.parse::<u32>().unwrap()).sum())
