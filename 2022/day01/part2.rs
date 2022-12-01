@@ -1,7 +1,5 @@
-use std::fs;
-
 fn main() {
-    let contents = fs::read_to_string("input.txt").expect("Should have been able to read the file");
+    let contents = include_str!("input.txt");
 
     let mut v: Vec<u32> = contents
         .trim_end()
