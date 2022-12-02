@@ -11,7 +11,7 @@ fn main() {
 
     let mut sum = 0;
 
-    for round in rounds.iter() {
+    rounds.iter().for_each(|round| {
         // println!("{:?}", round[1]);
         let x1 = match round[1] {
             "X" => 1,
@@ -35,7 +35,7 @@ fn main() {
         };
 
         sum += x1 + x2;
-    }
+    });
 
     // println!("{:?}", rounds);
     println!("{:?}", sum);
