@@ -1,9 +1,12 @@
-# rounds = File.readlines('input_example.txt', chomp: true).map { |l| l.split(' ') }
-rounds = File.readlines('input.txt', chomp: true).map { |l| l.split(' ') }
+# frozen_string_literal: true
 
-win =  ['AY', 'BZ', 'CX'] # 6
-draw = ['AX', 'BY', 'CZ'] # 3
-lose = ['AZ', 'BX', 'CY'] # 0
+rounds = File
+         .readlines('input.txt', chomp: true)
+         .map { |l| l.split(' ') }
+
+win =  %w[AY BZ CX] # 6
+draw = %w[AX BY CZ] # 3
+lose = %w[AZ BX CY] # 0
 
 result = rounds.sum do |round|
   x1 =
@@ -17,12 +20,11 @@ result = rounds.sum do |round|
     end
 
   x2 =
-    case
-    when win.include?(round.join)
+    if win.include?(round.join)
       6
-    when draw.include?(round.join)
+    elsif draw.include?(round.join)
       3
-    when lose.include?(round.join)
+    elsif lose.include?(round.join)
       0
     end
 
