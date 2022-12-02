@@ -30,3 +30,4 @@ result = rounds.sum do |round|
 end
 
 puts result
+# 11841
