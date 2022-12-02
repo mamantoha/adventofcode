@@ -4,24 +4,32 @@ rounds = File
          .readlines('input.txt', chomp: true)
          .map { |l| l.split(' ') }
 
+LOST = 0
+DRAW = 3
+WIN = 6
+
+ROCK = 1
+PAPER = 2
+SCISSORS = 3
+
 points = {
-  'X' => 1,
-  'Y' => 2,
-  'Z' => 3
+  'X' => ROCK,
+  'Y' => PAPER,
+  'Z' => SCISSORS
 }
 
-win =  %w[AY BZ CX] # 6
-draw = %w[AX BY CZ] # 3
-lose = %w[AZ BX CY] # 0
+win =  %w[AY BZ CX]
+draw = %w[AX BY CZ]
+lose = %w[AZ BX CY]
 
 result = rounds.sum do |round|
   case round[1]
-  when 'X' # lose
-    points[lose.detect { |c| c.start_with?(round[0]) }.chars.last] + 0
-  when 'Y' # draw
-    points[draw.detect { |c| c.start_with?(round[0]) }.chars.last] + 3
-  when 'Z' # win
-    points[win.detect { |c| c.start_with?(round[0]) }.chars.last] + 6
+  when 'X'
+    points[lose.detect { |c| c.start_with?(round[0]) }.chars.last] + LOST
+  when 'Y'
+    points[draw.detect { |c| c.start_with?(round[0]) }.chars.last] + DRAW
+  when 'Z'
+    points[win.detect { |c| c.start_with?(round[0]) }.chars.last] + WIN
   end
 end
 
