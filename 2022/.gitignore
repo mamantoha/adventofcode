@@ -1,0 +1,6 @@
+*
+!*.txt
+!*.cr
+!*.rb
+!*.rs
+!.gitignore
