@@ -17,15 +17,15 @@ fn main() {
         .iter()
         .map(|round| match round[1] {
             "X" => {
-                let p = detect_point(round[0], lose.to_vec());
+                let p = detect_point(round[0], lose);
                 points.get(&p).unwrap() + 0
             }
             "Y" => {
-                let p = detect_point(round[0], draw.to_vec());
+                let p = detect_point(round[0], draw);
                 points.get(&p).unwrap() + 3
             }
             "Z" => {
-                let p = detect_point(round[0], win.to_vec());
+                let p = detect_point(round[0], win);
                 points.get(&p).unwrap() + 6
             }
             &_ => 0,
@@ -35,7 +35,7 @@ fn main() {
     println!("{:?}", result);
 }
 
-fn detect_point(x: &str, combinations: Vec<&str>) -> char {
+fn detect_point(x: &str, combinations: [&str; 3]) -> char {
     combinations
         .iter()
         .find(|&&c| c.starts_with(x))
