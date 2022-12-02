@@ -23,3 +23,5 @@ result = rounds.sum do |round|
 end
 
 puts result
+
+# 13022
