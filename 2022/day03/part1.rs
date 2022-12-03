@@ -17,8 +17,7 @@ fn main() {
     let mut priorities = HashMap::new();
 
     range.for_each(|c| {
-        let ord = <char as Into<u32>>::into(c);
-        let priority = ord - 96;
+        let priority: u32 = <char as Into<u32>>::into(c) - 96;
 
         priorities.insert(c, priority);
         priorities.insert(c.to_ascii_uppercase(), priority + 26);
@@ -32,11 +31,8 @@ fn main() {
                 .map(|chunk| chunk.to_vec())
                 .collect();
 
-            let c1 = &chunks[0];
-            let c2 = &chunks[1];
-
-            let intersect: char = intersection(&c1, &c2)[0];
-            let priority = priorities.get(&intersect).unwrap();
+            let intersect: char = intersection(&chunks[0], &chunks[1])[0];
+            let priority: &u32 = priorities.get(&intersect).unwrap();
 
             priority
         })

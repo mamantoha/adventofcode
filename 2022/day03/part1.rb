@@ -6,9 +6,11 @@ lines = File.readlines(file_path, chomp: true).map(&:chars)
 
 range = 'a'..'z'
 
-priorities = range.each_with_index.each_with_object({}) do |(c, i), memo|
-  memo[c] = i + 1
-  memo[c.upcase] = i + 27
+priorities = range.each_with_object({}) do |c, memo|
+  priority = c.ord - 96
+
+  memo[c] = priority
+  memo[c.upcase] = priority + 26
 end
 
 sum = lines.sum do |line|
