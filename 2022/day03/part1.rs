@@ -14,13 +14,13 @@ fn main() {
 
     let range = 'a'..='z';
 
-    let mut priorities = HashMap::new();
-
-    range.for_each(|c| {
+    let priorities = range.fold(HashMap::new(), |mut memo, c| {
         let priority: u32 = <char as Into<u32>>::into(c) - 96;
 
-        priorities.insert(c, priority);
-        priorities.insert(c.to_ascii_uppercase(), priority + 26);
+        memo.insert(c, priority);
+        memo.insert(c.to_ascii_uppercase(), priority + 26);
+
+        memo
     });
 
     let sum: u32 = lines
