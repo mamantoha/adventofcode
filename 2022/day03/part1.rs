@@ -28,19 +28,20 @@ fn main() {
 
     let result: Vec<Vec<char>> = lines.iter().map(|l| l.chars().collect()).collect();
 
-    let mut sum = 0;
+    let sum: u32 = result
+        .iter()
+        .map(|r| {
+            let mut chunks: _ = r.chunks(r.len() / 2);
 
-    result.iter().for_each(|r| {
-        let mut chunks: _ = r.chunks(r.len() / 2);
+            let c1 = chunks.next().unwrap().to_vec();
+            let c2 = chunks.next().unwrap().to_vec();
 
-        let c1 = chunks.next().unwrap().to_vec();
-        let c2 = chunks.next().unwrap().to_vec();
+            let intersect: char = intersection(&c1, &c2)[0];
+            let priority = priorities.get(&intersect).unwrap();
 
-        let intersect: char = intersection(&c1, &c2)[0];
-        let priority = priorities.get(&intersect).unwrap();
-
-        sum += priority;
-    });
+            priority
+        })
+        .sum();
 
     println!("{:?}", sum);
 }

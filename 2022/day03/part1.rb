@@ -9,9 +9,9 @@ end
 
 sum = rucksacks.sum do |rucksack|
   compartment = rucksack.chars.each_slice(rucksack.size / 2).to_a
-  diff = (compartment[0] & compartment[1]).first
+  intersect = (compartment[0] & compartment[1]).first
 
-  priorities[diff]
+  priorities[intersect]
 end
 
 puts sum
