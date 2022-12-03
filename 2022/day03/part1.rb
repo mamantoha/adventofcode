@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-lines = File.readlines('input.txt', chomp: true).map(&:chars)
+file_path = 'input.txt'
+
+lines = File.readlines(file_path, chomp: true).map(&:chars)
 
 range = 'a'..'z'
 
