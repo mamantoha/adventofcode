@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-rucksacks = File.readlines('input.txt', chomp: true)
+lines = File.readlines('input.txt', chomp: true).map(&:chars)
 
-priorities = ('a'..'z').each_with_index.each_with_object({}) do |(c, i), memo|
+range = 'a'..'z'
+
+priorities = range.each_with_index.each_with_object({}) do |(c, i), memo|
   memo[c] = i + 1
   memo[c.upcase] = i + 27
 end
 
-sum = rucksacks.sum do |rucksack|
-  compartment = rucksack.chars.each_slice(rucksack.size / 2).to_a
-  intersect = (compartment[0] & compartment[1]).first
+sum = lines.sum do |line|
+  chunks = line.each_slice(line.size / 2).to_a
+  intersect = (chunks[0] & chunks[1]).first
 
   priorities[intersect]
 end

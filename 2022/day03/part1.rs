@@ -2,17 +2,17 @@ use std::collections::HashMap;
 use std::fs;
 
 fn main() {
-    // let file_path = "input_example.txt";
     let file_path = "input.txt";
     let file_content =
         fs::read_to_string(file_path).expect("Should have been able to read the file");
 
-    let lines: Vec<&str> = file_content.trim_end().lines().collect();
-
-    // println!("{:?}", lines);
+    let lines: Vec<Vec<char>> = file_content
+        .trim_end()
+        .lines()
+        .map(|l| l.chars().collect())
+        .collect();
 
     let range = 'a'..='z';
-    // println!("{:?}", range);
 
     let mut priorities = HashMap::new();
 
@@ -24,17 +24,16 @@ fn main() {
         priorities.insert(c.to_ascii_uppercase(), priority + 26);
     });
 
-    // println!("{:?}", priorities);
-
-    let result: Vec<Vec<char>> = lines.iter().map(|l| l.chars().collect()).collect();
-
-    let sum: u32 = result
+    let sum: u32 = lines
         .iter()
-        .map(|r| {
-            let mut chunks: _ = r.chunks(r.len() / 2);
+        .map(|line| {
+            let chunks: Vec<Vec<char>> = line
+                .chunks(line.len() / 2)
+                .map(|chunk| chunk.to_vec())
+                .collect();
 
-            let c1 = chunks.next().unwrap().to_vec();
-            let c2 = chunks.next().unwrap().to_vec();
+            let c1 = &chunks[0];
+            let c2 = &chunks[1];
 
             let intersect: char = intersection(&c1, &c2)[0];
             let priority = priorities.get(&intersect).unwrap();
