@@ -6,11 +6,11 @@ lines = File
         .readlines(file_path, chomp: true)
         .map do |line|
           line
-            .split(',').map { p.split('-').map(&:to_i) }
-            .map { |p| (p[0]..p[1]) }
+            .split(',').map { |p| p.split('-').map(&:to_i) }
+            .map { |x| (x[0]..x[1]) }
         end
 
-result = lines.count { |p| p[0].cover?(p[1]) || p[1].cover?(p[0]) }
+result = lines.count { |r| r[0].cover?(r[1]) || r[1].cover?(r[0]) }
 
 puts result
 
