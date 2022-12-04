@@ -27,12 +27,21 @@ describe Range do
     it { ((1..10).includes?((1...11))).should be_truthy }
     it { ((1..10).includes?((1..11))).should be_falsey }
     it { ((1...11).includes?((1..10))).should be_truthy }
+    it { ((1...11).includes?((1..11))).should be_falsey }
     it { ((1..).includes?((1..5))).should be_truthy }
     it { ((..10).includes?((1..5))).should be_truthy }
+    it { (('a'..'f').includes?(('a'..'c'))).should be_truthy }
+    it { (('a'..'f').includes?(('a'...'c'))).should be_truthy }
+    it { (('a'...'f').includes?(('a'..'c'))).should be_truthy }
+    it { (('a'...'f').includes?(('a'...'c'))).should be_truthy }
+    it { (('a'..'e').includes?(('a'...'f'))).should be_truthy }
+    it { (('a'...'f').includes?(('a'..'f'))).should be_falsey }
   end
 
   describe "#overlaps?" do
     it { ((1..5).overlaps?((5..10))).should be_truthy }
     it { ((1..4).overlaps?((6..8))).should be_falsey }
+    it { (('a'..'f').overlaps?(('a'..'e'))).should be_truthy }
+    it { (('a'..'f').overlaps?(('x'..'z'))).should be_falsey }
   end
 end
