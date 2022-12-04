@@ -1,6 +1,8 @@
 require "spec"
 
 struct Range(B, E)
+  # Returns `true` if `other` is a subrange the `self`.
+  # Returns `false` otherwise.
   def includes?(other : Range) : Bool
     begin_value = @begin
     end_value = excludes_end? ? @end.try(&.pred) : @end
@@ -12,6 +14,7 @@ struct Range(B, E)
       (end_value.nil? || (!other_end_value.nil? && other_end_value <= end_value))
   end
 
+  # Compare two ranges and see if they overlap each other
   def overlaps?(other : Range) : Bool
     covers?(other.begin) || other.covers?(@begin)
   end
