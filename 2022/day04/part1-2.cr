@@ -1,23 +1,4 @@
-struct Range(B, E)
-  def overlaps?(other : Range) : Bool
-    covers?(other.begin) || other.covers?(@begin)
-  end
-
-  def includes?(other : Range) : Bool
-    begin_value = @begin
-    end_value = @end
-
-    other_begin_value = other.begin
-    other_end_value = other.end
-
-    (@exclusive == other.@exclusive) &&
-      # begin passes
-      (begin_value.nil? || (!other_begin_value.nil? && other_begin_value >= begin_value)) &&
-      # end passes
-      (end_value.nil? ||
-        (@exclusive ? !other_end_value.nil? && other_end_value < end_value : !other_end_value.nil? && other_end_value <= end_value))
-  end
-end
+require "./range_includes"
 
 file_path = "input.txt"
 
