@@ -3,18 +3,13 @@ require "spec"
 struct Range(B, E)
   def includes?(other : Range) : Bool
     begin_value = @begin
-    end_value = @end
+    end_value = excludes_end? ? @end.try(&.pred) : @end
 
     other_begin_value = other.begin
-    other_end_value = other.end
+    other_end_value = other.excludes_end? ? other.end.try(&.pred) : other.end
 
-    other_end_value = other.excludes_end? ? other_end_value.try(&.pred) : other_end_value
-
-    # begin passes
     (begin_value.nil? || (!other_begin_value.nil? && other_begin_value >= begin_value)) &&
-      # end passes
-      (end_value.nil? ||
-        !other_end_value.nil? && (excludes_end? ? other_end_value < end_value : other_end_value <= end_value))
+      (end_value.nil? || (!other_end_value.nil? && other_end_value <= end_value))
   end
 
   def overlaps?(other : Range) : Bool
