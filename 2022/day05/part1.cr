@@ -12,15 +12,18 @@ stacks_str.split('\n').reverse[1..].each do |line|
   # Crates in a row
   # puts line.scan(/.{1,4}/) # Array(Regex::MatchData)
   # puts line.scan(/.{1,4}/).map { |md| md[0] } # Array(String)
-  crates = line.scan(/.{1,4}/).map { |md| md[0] }.map { |s| s.match(/\[(.*)\]/).try(&.[1]) } # Array(String | Nil)
+  crates =
+    line
+      .scan(/.{1,4}/)
+      .map { |md| md[0] }
+      .map { |s| s.match(/\[(.*)\]/).try(&.[1]) } # Array(String | Nil)
 
   stacks_count.times do |i|
-    (stacks[i] ||= [] of String?) << crates[i]?
+    stacks[i] << crates[i]?
   end
 end
 
 stacks = stacks.map(&.compact)
-# p! stacks
 
 steps.split('\n').each do |step|
   if (m = step.match(/move (\d+) from (\d+) to (\d+)/))
@@ -29,7 +32,6 @@ steps.split('\n').each do |step|
     to = m[3].to_i - 1
 
     crates = stacks[from].pop(count)
-    # stacks[to].push(*crates.reverse)
     stacks[to] += crates.reverse
   end
 end
