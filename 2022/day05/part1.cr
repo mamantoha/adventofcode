@@ -6,7 +6,7 @@ stacks_str, steps = content.split("\n\n")
 
 stacks_count = stacks_str.split('\n').last.split.last.to_i
 
-stacks = [] of Array(String?)
+stacks = Array.new(stacks_count) { Array(String?).new }
 
 stacks_str.split('\n').reverse[1..].each do |line|
   # Crates in a row
@@ -15,15 +15,7 @@ stacks_str.split('\n').reverse[1..].each do |line|
   crates = line.scan(/.{1,4}/).map { |md| md[0] }.map { |s| s.match(/\[(.*)\]/).try(&.[1]) } # Array(String | Nil)
 
   stacks_count.times do |i|
-    v = crates[i]?
-
-    # (stacks[i] ||= []) << v
-
-    if stacks[i]?
-      stacks[i] << v
-    else
-      stacks << [v]
-    end
+    (stacks[i] ||= [] of String?) << crates[i]?
   end
 end
 
@@ -37,7 +29,8 @@ steps.split('\n').each do |step|
     to = m[3].to_i - 1
 
     crates = stacks[from].pop(count)
-    crates.reverse.each { |crate| stacks[to] << crate }
+    # stacks[to].push(*crates.reverse)
+    stacks[to] += crates.reverse
   end
 end
 
