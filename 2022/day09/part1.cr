@@ -21,42 +21,43 @@ steps.each do |(dir, count)|
       head_pos = {head_pos[0] - 1, head_pos[1]}
     end
 
-    # cover or touch
-    if is_neighbor?(head_pos, tail_pos)
-      visited << tail_pos unless visited.includes?(tail_pos)
-
-      next
-    end
-
-    case
-    when head_pos[0] > tail_pos[0] && head_pos[1] == tail_pos[1]
-      # [↑]
-      tail_pos = {tail_pos[0] + 1, tail_pos[1]}
-    when head_pos[0] < tail_pos[0] && head_pos[1] == tail_pos[1]
-      # [↓]
-      tail_pos = {tail_pos[0] - 1, tail_pos[1]}
-    when head_pos[0] == tail_pos[0] && head_pos[1] < tail_pos[1]
-      # [←]
-      tail_pos = {tail_pos[0], tail_pos[1] - 1}
-    when head_pos[0] == tail_pos[0] && head_pos[1] > tail_pos[1]
-      # [→]
-      tail_pos = {tail_pos[0], tail_pos[1] + 1}
-    when head_pos[0] > tail_pos[0] && head_pos[1] > tail_pos[1]
-      # [↗]
-      tail_pos = {tail_pos[0] + 1, tail_pos[1] + 1}
-    when head_pos[0] < tail_pos[0] && head_pos[1] < tail_pos[1]
-      # [↙]
-      tail_pos = {tail_pos[0] - 1, tail_pos[1] - 1}
-    when head_pos[0] < tail_pos[0] && head_pos[1] > tail_pos[1]
-      # [↘]
-      tail_pos = {tail_pos[0] - 1, tail_pos[1] + 1}
-    when head_pos[0] > tail_pos[0] && head_pos[1] < tail_pos[1]
-      # [↖]
-      tail_pos = {tail_pos[0] + 1, tail_pos[1] - 1}
-    end
+    tail_pos = move(head_pos, tail_pos)
 
     visited << tail_pos unless visited.includes?(tail_pos)
   end
+end
+
+def move(head_pos, tail_pos)
+  return tail_pos if is_neighbor?(head_pos, tail_pos)
+
+  case
+  when head_pos[0] > tail_pos[0] && head_pos[1] == tail_pos[1]
+    # [↑]
+    tail_pos = {tail_pos[0] + 1, tail_pos[1]}
+  when head_pos[0] < tail_pos[0] && head_pos[1] == tail_pos[1]
+    # [↓]
+    tail_pos = {tail_pos[0] - 1, tail_pos[1]}
+  when head_pos[0] == tail_pos[0] && head_pos[1] < tail_pos[1]
+    # [←]
+    tail_pos = {tail_pos[0], tail_pos[1] - 1}
+  when head_pos[0] == tail_pos[0] && head_pos[1] > tail_pos[1]
+    # [→]
+    tail_pos = {tail_pos[0], tail_pos[1] + 1}
+  when head_pos[0] > tail_pos[0] && head_pos[1] > tail_pos[1]
+    # [↗]
+    tail_pos = {tail_pos[0] + 1, tail_pos[1] + 1}
+  when head_pos[0] < tail_pos[0] && head_pos[1] < tail_pos[1]
+    # [↙]
+    tail_pos = {tail_pos[0] - 1, tail_pos[1] - 1}
+  when head_pos[0] < tail_pos[0] && head_pos[1] > tail_pos[1]
+    # [↘]
+    tail_pos = {tail_pos[0] - 1, tail_pos[1] + 1}
+  when head_pos[0] > tail_pos[0] && head_pos[1] < tail_pos[1]
+    # [↖]
+    tail_pos = {tail_pos[0] + 1, tail_pos[1] - 1}
+  end
+
+  tail_pos
 end
 
 def is_neighbor?(head : Tuple(Int32, Int32), tail : Tuple(Int32, Int32)) : Bool
@@ -69,3 +70,4 @@ end
 # p! visited
 
 p! visited.size
+# 5513
