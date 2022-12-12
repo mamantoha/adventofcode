@@ -1,0 +1,10 @@
+version: 2.0
+shards:
+  bisect:
+    git: https://github.com/spider-gazelle/bisect.git
+    version: 1.2.1
+
+  priority-queue:
+    git: https://github.com/spider-gazelle/priority-queue.git
+    version: 1.0.1+git.commit.efe9083d7c33fe35f5385b42b07412d05f6ce6e5
+

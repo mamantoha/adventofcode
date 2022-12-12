@@ -1,0 +1,7 @@
+name: day12
+version: 0.1.0
+
+dependencies:
+  priority-queue:
+    github: spider-gazelle/priority-queue
+    branch: master
