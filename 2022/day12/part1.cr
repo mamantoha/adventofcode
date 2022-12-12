@@ -1,7 +1,7 @@
 require "./dijkstra"
 
-grid = File.read_lines("input_example.txt").map(&.chars)
-# grid = File.read_lines("input.txt").map(&.chars)
+# grid = File.read_lines("input_example.txt").map(&.chars)
+grid = File.read_lines("input.txt").map(&.chars)
 
 start = {0, 0}
 finish = {0, 0}
@@ -43,7 +43,7 @@ grid.each_with_index do |row, y|
 
       next_val = grid[dy][dx]
 
-      if current_val == next_val || current_val.ord == next_val.ord - 1
+      if current_val == next_val || current_val.ord == next_val.ord - 1 || current_val.ord > next_val.ord
         gr.add_edge({y, x}, {dy, dx}, 1)
       end
     end
@@ -54,5 +54,7 @@ p! start
 p! finish
 
 if (result = gr.shortest_path(start, finish))
-  p! result
+  p! result.first
 end
+
+# 484
