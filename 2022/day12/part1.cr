@@ -1,4 +1,4 @@
-require "./dijkstra"
+require "dijkstra"
 
 # grid = File.read_lines("input_example.txt").map(&.chars)
 grid = File.read_lines("input.txt").map(&.chars)

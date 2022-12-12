@@ -4,6 +4,10 @@ shards:
     git: https://github.com/spider-gazelle/bisect.git
     version: 1.2.1
 
+  dijkstra:
+    git: https://github.com/geocrystal/dijkstra.git
+    version: 0.3.0+git.commit.ff9a70cc1995b00be8bb795731138bf0ebea1c06
+
   priority-queue:
     git: https://github.com/spider-gazelle/priority-queue.git
     version: 1.0.1+git.commit.efe9083d7c33fe35f5385b42b07412d05f6ce6e5
