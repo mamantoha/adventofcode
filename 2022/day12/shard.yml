@@ -4,4 +4,4 @@ version: 0.1.0
 dependencies:
   dijkstra:
     github: geocrystal/dijkstra
-    branch: main
+    version: ">= 0.4.1"

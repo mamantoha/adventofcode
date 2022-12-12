@@ -6,7 +6,7 @@ shards:
 
   dijkstra:
     git: https://github.com/geocrystal/dijkstra.git
-    version: 0.3.0+git.commit.ff9a70cc1995b00be8bb795731138bf0ebea1c06
+    version: 0.4.1
 
   priority-queue:
     git: https://github.com/spider-gazelle/priority-queue.git
