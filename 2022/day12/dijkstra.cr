@@ -31,19 +31,19 @@ module Dijkstra
     private def dijkstra(source : T)
       raise Dijkstra::Error.new("Missing source node: '#{source}'") unless @vertices.includes?(source)
 
-      q = Priority::Queue(T).new
+      queue = Priority::Queue(T).new
 
       @vertices.each do |v|
         @dist[v] = @infinity # Unknown distance from source to v
         @prev[v] = nil       # Predecessor of v
 
-        q.push(@dist[v], v)
+        queue.push(@dist[v], v)
       end
 
       @dist[source] = 0
 
-      while !q.empty?   # The main loop
-        u = q.pop.value # Remove and return best vertex
+      while !queue.empty?   # The main loop
+        u = queue.pop.value # Remove and return best vertex
 
         next if @dist[u] == @infinity
 
@@ -54,7 +54,7 @@ module Dijkstra
             @dist[v] = alt
             @prev[v] = u
 
-            q.push(alt, v) # decrease priority
+            queue.push(alt, v) # decrease priority
           end
         end
       end
