@@ -25,5 +25,6 @@ module Enumerable(T)
   end
 end
 
-p [4, 2, 5, 3, 3, 3].take_while { |e| e < 5 }
-p [4, 2, 5, 3, 3, 3].take_while(true) { |e| e < 5 }
+p [4, 2, 5, 3, 3, 3].take_while { |e| e < 5 } # => [4, 2]
+p [4, 2, 5, 3, 3, 3].take_while(true) { |e| e < 5 } # => [4, 2, 5]
+p [4, 2, 5, 3, 3, 3].take_while { |e| e <= 5 } # => [4, 2, 5, 3, 3, 3]
