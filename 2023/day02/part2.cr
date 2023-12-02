@@ -6,9 +6,9 @@ lines.each do |line|
   subsets = line.split(':', 2).last
 
   fewer_cubes = {
-    "red"   => 1,
-    "green" => 1,
-    "blue"  => 1,
+    "red"   => 0,
+    "green" => 0,
+    "blue"  => 0,
   }
 
   subsets = subsets.split(';')
