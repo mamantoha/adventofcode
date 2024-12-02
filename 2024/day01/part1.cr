@@ -1,7 +1,7 @@
 puts File
   .read_lines("input.txt")
   .map(&.split(/\s+/)
-  .map(&.to_i))
+    .map(&.to_i))
   .transpose
   .map(&.sort)
   .transpose
