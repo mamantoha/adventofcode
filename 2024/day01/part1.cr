@@ -4,7 +4,6 @@ puts File
   .transpose
   .map(&.sort)
   .transpose
-  .map { |x| (x[0] - x[1]).abs }
-  .sum
+  .sum { |x| (x[0] - x[1]).abs }
 
 # 1660292
