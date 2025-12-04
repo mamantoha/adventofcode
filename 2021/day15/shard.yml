@@ -1,0 +1,7 @@
+name: day15
+version: 0.1.0
+
+dependencies:
+  dijkstra:
+    path: ../../../crystal/geocrystal/dijkstra
+    # github: geocrystal/dijkstra
